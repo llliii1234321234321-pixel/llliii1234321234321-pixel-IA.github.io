@@ -3,6 +3,7 @@ document.documentElement.classList.add("js-ready");
 
 const menuButton = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const themeButton = document.querySelector(".theme-toggle");
 const navAnchors = [...document.querySelectorAll(".nav-link")];
 const sections = [...document.querySelectorAll("main section[id]")];
 const revealItems = document.querySelectorAll(".reveal");
@@ -18,6 +19,13 @@ menuButton.addEventListener("click", () => {
   menuButton.setAttribute("aria-expanded", String(!isOpen));
   menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
   navLinks.classList.toggle("is-open", !isOpen);
+});
+
+themeButton.addEventListener("click", () => {
+  const isDark = document.body.classList.toggle("dark-mode");
+  themeButton.setAttribute("aria-pressed", String(isDark));
+  themeButton.querySelector(".theme-icon").textContent = isDark ? "☀" : "☾";
+  themeButton.querySelector(".theme-label").textContent = isDark ? "Light mode" : "Dark mode";
 });
 
 navAnchors.forEach((anchor) => {
